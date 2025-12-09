@@ -22,7 +22,7 @@ const papers = [
     },
     {
         type: 'image',
-        src: 'imagenes/imagen1.jpg',
+        src: 'images/imagen1.jpg',
         caption: 'Nuestro primer momento juntos'
     },
     {
@@ -35,7 +35,7 @@ const papers = [
     },
     {
         type: 'image',
-        src: 'imagenes/imagen2.jpg',
+        src: 'images/imagen2.jpg',
         caption: 'Recuerdos que guardamos por siempre'
     },
     {
