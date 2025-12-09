@@ -208,23 +208,42 @@ body::before {
     position: absolute;
     font-size: 20px;
     opacity: 0;
-    animation: floatUp 4s ease-in forwards;
+    animation: floatUp 6s ease-in forwards;
 }
 
 @keyframes floatUp {
     0% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1) rotate(0deg);
     }
     100% {
         opacity: 0;
-        transform: translateY(-600px) scale(1.5);
+        transform: translateY(-800px) scale(1.5) rotate(360deg);
     }
 }
 
 @media (max-width: 768px) {
     .floating-heart {
         font-size: 16px;
+    }
+}
+
+/* Corazones que explotan al hacer clic */
+.burst-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    animation: burstOut 1.5s ease-out forwards;
+}
+
+@keyframes burstOut {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--moveX), var(--moveY)) scale(1.5) rotate(360deg);
     }
 }
 
