@@ -119,20 +119,52 @@ function createPaper(paperData, index) {
     const paper = document.createElement('div');
     paper.className = 'paper';
     
-    const maxX = window.innerWidth - 260;
-    const maxY = window.innerHeight - 340;
-    const randomX = Math.random() * maxX + 10;
-    const randomY = Math.random() * maxY + 10;
-    const randomRotate = Math.random() * 30 - 15;
+    // Detectar tamaño de pantalla
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
     
-    paper.style.left = randomX + 'px';
-    paper.style.top = randomY + 'px';
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
+    // Configuración adaptable según dispositivo
+    let radius;
+    let paperWidth;
+    let paperHeight;
+    
+    if (isSmallMobile) {
+        radius = Math.min(window.innerWidth, window.innerHeight) * 0.32;
+        paperWidth = 170;
+        paperHeight = 240;
+    } else if (isMobile) {
+        radius = Math.min(window.innerWidth, window.innerHeight) * 0.35;
+        paperWidth = 200;
+        paperHeight = 280;
+    } else {
+        radius = Math.min(window.innerWidth, window.innerHeight) * 0.38;
+        paperWidth = 240;
+        paperHeight = 320;
+    }
+    
+    // Calcular posición en círculo
+    const angle = (index * (360 / papers.length)) * (Math.PI / 180);
+    const x = centerX + radius * Math.cos(angle) - (paperWidth / 2);
+    const y = centerY + radius * Math.sin(angle) - (paperHeight / 2);
+    
+    // Rotación más suave
+    const randomRotate = (Math.random() * 16 - 8);
+    
+    // Asegurar que las cartas no salgan de la pantalla
+    const finalX = Math.max(10, Math.min(x, window.innerWidth - paperWidth - 10));
+    const finalY = Math.max(10, Math.min(y, window.innerHeight - paperHeight - 10));
+    
+    paper.style.left = finalX + 'px';
+    paper.style.top = finalY + 'px';
     paper.style.transform = `rotate(${randomRotate}deg)`;
     paper.style.animation = `fallIn 0.8s ease-out, float 4s ease-in-out ${index * 0.5}s infinite`;
     paper.style.animationDelay = `0s, ${index * 0.5}s`;
 
-    paper.dataset.originalX = randomX;
-    paper.dataset.originalY = randomY;
+    paper.dataset.originalX = finalX;
+    paper.dataset.originalY = finalY;
     paper.dataset.originalRotate = randomRotate;
 
     const front = document.createElement('div');
@@ -227,3 +259,17 @@ setInterval(() => {
         createFloatingHeart();
     }
 }, 2000);
+
+// Reposicionar cartas al cambiar tamaño de ventana
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        if (papersContainer.classList.contains('visible') && !currentZoomedPaper) {
+            papersContainer.innerHTML = '';
+            papers.forEach((paper, index) => {
+                createPaper(paper, index);
+            });
+        }
+    }, 500);
+});
