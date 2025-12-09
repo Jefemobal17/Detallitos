@@ -14,37 +14,42 @@ let currentZoomedPaper = null;
 const papers = [
     {
         type: 'message',
-        content: 'Cada momento contigo es un regalo que atesoro en mi corazón. Gracias por existir y llenar mi vida de luz y amor.'
+        content: 'Cada momento contigo es un regalo 🎁 que atesoro en mi corazón ❤️. Gracias doy siempre poque llegaste y llenaste mi vida de luz y amor 🥰.'
     },
     {
         type: 'poem',
-        content: 'En tus ojos encuentro el cielo,\nen tu risa, la melodía,\nen tus brazos, mi consuelo,\nen tu amor, mi alegría.'
+        content: 'En tus ojos noto el cielo,\nen tu mirada, un resplandor,\nen tus brazos, mi consuelo,\nbrillas, cual radiante sol☀️.'
     },
     {
         type: 'image',
         src: 'imagenes/imagen1.jpg',
-        caption: 'Nuestro primer momento juntos'
+        caption: 'Eres la calma, en medio de mi tormenta.'
     },
     {
         type: 'message',
-        content: 'Te amo no solo por quien eres, sino por quien soy cuando estoy contigo. Eres mi hogar, mi paz, mi todo.'
+        content: 'Me gustas, no solo por quien eres, sino por quien soy cuando estoy contigo. Me das seguridad, paz y alegria 🫶🏽.'
     },
     {
         type: 'poem',
-        content: 'Eres la estrella que guía,\nla luz en mi oscuridad,\nel sueño que cada día,\nse convierte en realidad.'
+        content: 'Eres una bella estrella 💫 guía de mi travesía,\nla luz en mi oscuridad, iluminas todos mis días.\nSueño con tenerte cerca y abrazarte 🫂❤️ cada día,\nse convierte en realidad contigo cada fantasía...'
     },
     {
         type: 'image',
         src: 'imagenes/imagen2.jpg',
-        caption: 'Recuerdos que guardamos por siempre'
+        caption: 'Con solo verte, veo lo afortunado que soy.'
     },
     {
         type: 'message',
-        content: 'Gracias por cada sonrisa, cada abrazo, cada susurro de amor. Eres mi persona favorita en todo el universo. Te amo infinitamente.'
+        content: 'Gracias por cada sonrisa, cada abrazo, cada tiempo juntos. Eres mi persona favorita en todo el mundo. Te quiero infinitamente.'
     },
     {
         type: 'poem',
-        content: 'Contigo el tiempo se detiene,\ny el mundo pierde su prisa,\nmi corazón te pertenece,\neres mi eterna sonrisa.'
+        content: 'Contigo el tiempo pasa lento,\ncasi que hasta se detiene,\natesoro cada momento,\nque cerca puedo tenerte.'
+    },
+    {
+        type: 'image',
+        src: 'imagenes/imagen3.jpg',
+        caption: 'Disfruto más las comidas, cuando son contigo.'
     }
 ];
 
@@ -272,4 +277,5 @@ window.addEventListener('resize', function() {
             });
         }
     }, 500);
+
 });
