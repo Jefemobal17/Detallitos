@@ -299,7 +299,7 @@ body::before {
     transform: translate(-50%, -50%) scale(1.4) !important;
     z-index: 1001 !important;
     animation: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2) !important;
 }
 
 .paper.zoomed.flipped {
@@ -471,7 +471,7 @@ body::before {
 }
 
 .overlay.active {
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0);
     pointer-events: all;
 }
 
