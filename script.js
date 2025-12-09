@@ -18,11 +18,11 @@ const papers = [
     },
     {
         type: 'poem',
-        content: 'En tus ojos noto el cielo,\nlento, siento que me voy,\nen tus brazos, mi consuelo,\nen tu sonrisa, dulce fulgor.'
+        content: 'En tus ojos encuentro el cielo,\nen tu risa, la melodía,\nen tus brazos, mi consuelo,\nen tu amor, mi alegría.'
     },
     {
         type: 'image',
-        src: 'images/imagen1.jpg',
+        src: 'imagenes/imagen1.jpg',
         caption: 'Nuestro primer momento juntos'
     },
     {
@@ -31,11 +31,11 @@ const papers = [
     },
     {
         type: 'poem',
-        content: 'Eres tú la bella estrella guía de mi travesía,\nluz que ilumina mis dias,\nsueño en tenerte cada día,\nvida mía❤️.'
+        content: 'Eres la estrella que guía,\nla luz en mi oscuridad,\nel sueño que cada día,\nse convierte en realidad.'
     },
     {
         type: 'image',
-        src: 'images/imagen2.jpg',
+        src: 'imagenes/imagen2.jpg',
         caption: 'Recuerdos que guardamos por siempre'
     },
     {
@@ -44,7 +44,7 @@ const papers = [
     },
     {
         type: 'poem',
-        content: 'Contigo el tiempo pasa lento,\nsiento que hasta se detiene,\ncalmas todos mis tormentos,\neres tu quién me sostiene.'
+        content: 'Contigo el tiempo se detiene,\ny el mundo pierde su prisa,\nmi corazón te pertenece,\neres mi eterna sonrisa.'
     }
 ];
 
@@ -160,9 +160,9 @@ function createPaper(paperData, index) {
     paper.style.animation = `fallIn 0.8s ease-out, float 4s ease-in-out ${index * 0.5}s infinite`;
     paper.style.animationDelay = `0s, ${index * 0.5}s`;
 
-    // Guardar posición original
-    paper.dataset.originalX = paper.style.left;
-    paper.dataset.originalY = paper.style.top;
+    // Guardar posición y rotación original
+    paper.dataset.originalLeft = paper.style.left;
+    paper.dataset.originalTop = paper.style.top;
     paper.dataset.originalRotate = randomRotate;
 
     // Lado frontal (boca abajo)
@@ -221,9 +221,15 @@ function createPaper(paperData, index) {
             // Si está ampliada, restaurar a posición original
             resetPaper(this);
         } else {
-            // Ampliar la hoja
+            // Ampliar la hoja y voltearla
+            this.style.animation = 'none'; // Detener animación de flotación
             this.classList.add('zoomed');
-            this.classList.add('flipped');
+            
+            // Pequeño delay para que se vea el zoom antes del flip
+            setTimeout(() => {
+                this.classList.add('flipped');
+            }, 100);
+            
             overlay.classList.add('active');
             currentZoomedPaper = this;
         }
@@ -236,6 +242,20 @@ function resetPaper(paper) {
     paper.classList.remove('zoomed');
     paper.classList.remove('flipped');
     overlay.classList.remove('active');
+    
+    // Restaurar posición y animación original
+    const originalLeft = paper.dataset.originalLeft;
+    const originalTop = paper.dataset.originalTop;
+    const originalRotate = paper.dataset.originalRotate;
+    
+    paper.style.left = originalLeft;
+    paper.style.top = originalTop;
+    paper.style.transform = `rotate(${originalRotate}deg)`;
+    
+    // Reactivar animación de flotación
+    const index = Array.from(papersContainer.children).indexOf(paper);
+    paper.style.animation = `float 4s ease-in-out ${index * 0.5}s infinite`;
+    
     currentZoomedPaper = null;
 }
 
@@ -252,3 +272,18 @@ setInterval(() => {
         createFloatingHeart();
     }
 }, 2000);
+
+// Adaptar al cambiar el tamaño de ventana
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        if (papersContainer.classList.contains('visible') && !currentZoomedPaper) {
+            // Reposicionar hojas si la pantalla cambió de tamaño
+            papersContainer.innerHTML = '';
+            papers.forEach((paper, index) => {
+                createPaper(paper, index);
+            });
+        }
+    }, 500);
+});
