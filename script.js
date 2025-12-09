@@ -18,7 +18,7 @@ const papers = [
     },
     {
         type: 'poem',
-        content: 'En tus ojos encuentro el cielo,\nen tu risa, la melodía,\nen tus brazos, mi consuelo,\nen tu amor, mi alegría.'
+        content: 'En tus ojos noto el cielo,\nlento, siento que me voy,\nen tus brazos, mi consuelo,\nen tu sonrisa, dulce fulgor.'
     },
     {
         type: 'image',
@@ -31,7 +31,7 @@ const papers = [
     },
     {
         type: 'poem',
-        content: 'Eres la estrella que guía,\nla luz en mi oscuridad,\nel sueño que cada día,\nse convierte en realidad.'
+        content: 'Eres tú la bella estrella guía de mi travesía,\nluz que ilumina mis dias,\nsueño en tenerte cada día,\nvida mía❤️.'
     },
     {
         type: 'image',
@@ -44,7 +44,7 @@ const papers = [
     },
     {
         type: 'poem',
-        content: 'Contigo el tiempo se detiene,\ny el mundo pierde su prisa,\nmi corazón te pertenece,\neres mi eterna sonrisa.'
+        content: 'Contigo el tiempo pasa lento,\nsiento que hasta se detiene,\ncalmas todos mis tormentos,\neres tu quién me sostiene.'
     }
 ];
 
